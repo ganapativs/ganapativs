@@ -8,4 +8,4 @@ I'm a software engineer from India with focus on React.
 </p>
 <p><a href="https://meetguns.com">🌐 Check out my website</a></p>
 
-<div><img src="./assets/footer-bg.png" width="100%" /></div>
+<div><img src="assets/footer-bg.png" width="100%" /></div>
