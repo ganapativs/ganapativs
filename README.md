@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/aemmadi/aemmadi/master/wave.gif" width="30px">
+<span><img src="https://raw.githubusercontent.com/aemmadi/aemmadi/master/wave.gif" width="30px"></span>
   
 I'm Ganapati. I'm a software engineer from <span title="India">🇮🇳</span> with focus on React.
 <p><a href="https://meetguns.com?ref=github.com">🌐 Check out my website</a></p>
