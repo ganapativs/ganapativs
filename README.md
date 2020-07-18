@@ -1,6 +1,6 @@
 ### 👋 Hello! I'm Ganapati.
 
-I'm a software engineer from India with focus on React.
+I'm a software engineer from 🇮🇳 with focus on React.
 
 <p>
   <a href="https://www.twitter.com/ganapativs"><img src="https://img.shields.io/badge/twitter-%231DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" height=25></a> 
