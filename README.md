@@ -9,4 +9,4 @@ I'm a full-stack developer from <span title="India">🇮🇳</span>
 
 <p>🌐 <a href="https://meetguns.com?ref=github.com"><b>Check out my website</b></a></p>
 
-<div><img src="https://github.com/ganapativs/ganapativs/raw/master/assets/footer-bg.png" width="100%" /></div>
+<p><a href="https://github.com/ganapativs/react-spectrum"><img src="https://github.com/ganapativs/ganapativs/raw/master/assets/footer-bg.png" width="100%" /></a></p>
