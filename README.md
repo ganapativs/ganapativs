@@ -1,4 +1,6 @@
-###  <img src="https://raw.githubusercontent.com/aemmadi/aemmadi/master/wave.gif" width="24px">
+<p>
+  <img src="https://raw.githubusercontent.com/aemmadi/aemmadi/master/wave.gif" width="30px">
+</p>
 
 I'm Ganapati. I'm a software engineer from <span title="India">🇮🇳</span> with focus on React.
 
