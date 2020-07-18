@@ -7,6 +7,6 @@ I'm a full-stack developer from <span title="India">🇮🇳</span>
   <a href="https://www.linkedin.com/in/ganapativs"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" height=25></a>
 </p>
 
-<p>🌐 <a href="https://meetguns.com?ref=github.com">Check out my website</a></p>
+<p>🌐 <a href="https://meetguns.com?ref=github.com"><b>Check out my website</b></a></p>
 
 <div><img src="https://github.com/ganapativs/ganapativs/raw/master/assets/footer-bg.png" width="100%" /></div>
