@@ -1,0 +1,17 @@
+{
+  "name": "ganapativs-profile",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Generates the SVGs for github.com/ganapativs profile README.",
+  "scripts": {
+    "build": "npm run build:furniture && npm run build:charts && npm run build:wall",
+    "build:furniture": "node scripts/generate-assets.mjs",
+    "build:charts": "node scripts/generate-charts.mjs",
+    "build:wall": "node scripts/generate-wall.mjs"
+  },
+  "devDependencies": {
+    "@microcharts/react": "0.11.0"
+  },
+  "engines": { "node": ">=18" }
+}

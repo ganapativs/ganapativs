@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 348" width="1200" height="348" role="img" aria-labelledby="t d" font-kerning="normal">
+<title id="t">Career since 2013: seven roles, one company since 2015</title>
+<desc id="d">Timeline of seven roles since 2013. Intern, Web Frontend at Thinkappz from 2013; UI/UX Engineer at InvenZone from 2014; Software Engineer at Tracxn from 2015; Technology Lead at Tracxn from 2016; Associate VP, Technology at Tracxn from 2020; Senior Associate VP at Tracxn from 2022; VP, Technology at Tracxn from 2023, current. The Tracxn span begins in 2015 and covers four promotions.</desc>
+<style>
+.d{font-family:"Anek Latin","Helvetica Neue",Helvetica,Arial,sans-serif}
+.s{font-family:Piazzolla,Georgia,"Times New Roman",serif}
+.m{font-family:"Fragment Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.k{font-family:anekKannada,"Noto Sans Kannada","Nirmala UI","Tunga","Helvetica Neue",Arial,sans-serif}
+text{fill:#efeee7}
+.lbl{fill:#bebfb5}
+.dim{fill:#91978a}
+.acc{fill:#7dbf92}
+.tk{letter-spacing:.14em}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<rect x="0.5" y="0.5" width="1199" height="347" fill="#03180c" stroke="#2c3a2c"/>
+
+<text class="m tk dim" x="46" y="34" font-size="10.5">THE LONG ONE · ONE COMPANY SINCE 2015</text>
+<line x1="46" y1="40" x2="1154" y2="40" stroke="#2c3a2c" stroke-width="1"/>
+<text class="d" x="46" y="82" font-size="26" font-weight="700">One place, while the industry moved every eighteen months.</text>
+<line x1="296" y1="104" x2="296" y2="322" stroke="#2c3a2c" stroke-width="0.8"/>
+<text class="m dim" x="296" y="98" font-size="9.5" text-anchor="middle">2013</text>
+<line x1="417.85" y1="104" x2="417.85" y2="322" stroke="#2c3a2c" stroke-width="0.8"/>
+<text class="m dim" x="417.85" y="98" font-size="9.5" text-anchor="middle">2015</text>
+<line x1="539.69" y1="104" x2="539.69" y2="322" stroke="#2c3a2c" stroke-width="0.8"/>
+<text class="m dim" x="539.69" y="98" font-size="9.5" text-anchor="middle">2017</text>
+<line x1="661.54" y1="104" x2="661.54" y2="322" stroke="#2c3a2c" stroke-width="0.8"/>
+<text class="m dim" x="661.54" y="98" font-size="9.5" text-anchor="middle">2019</text>
+<line x1="783.38" y1="104" x2="783.38" y2="322" stroke="#2c3a2c" stroke-width="0.8"/>
+<text class="m dim" x="783.38" y="98" font-size="9.5" text-anchor="middle">2021</text>
+<line x1="905.23" y1="104" x2="905.23" y2="322" stroke="#2c3a2c" stroke-width="0.8"/>
+<text class="m dim" x="905.23" y="98" font-size="9.5" text-anchor="middle">2023</text>
+<line x1="1088" y1="104" x2="1088" y2="322" stroke="#2c3a2c" stroke-width="0.8"/>
+<text class="m dim" x="1088" y="98" font-size="9.5" text-anchor="middle">now</text>
+<rect x="412.85" y="173" width="680.15" height="144" fill="none" stroke="#7dbf92" stroke-width="1" stroke-dasharray="3 3" opacity="0.55"/>
+<text class="m tk" x="417.85" y="334" font-size="9.5" fill="#7dbf92">TRACXN — FOUR PROMOTIONS, NO DEPARTURES</text>
+<g>
+  <text class="m" x="282" y="129" font-size="12" text-anchor="end" fill="#bebfb5">Intern, Web Frontend</text>
+  <rect x="296" y="119" width="60.92" height="13" fill="#7dbf92" opacity="0.36"/>
+  
+  <text class="m" x="364.92" y="129" font-size="10.5" fill="#91978a">2013–2014</text>
+</g>
+<g>
+  <text class="m" x="282" y="159" font-size="12" text-anchor="end" fill="#bebfb5">UI/UX Engineer</text>
+  <rect x="356.92" y="149" width="60.92" height="13" fill="#7dbf92" opacity="0.47"/>
+  
+  <text class="m" x="425.85" y="159" font-size="10.5" fill="#91978a">2014–2015</text>
+</g>
+<g>
+  <text class="m" x="282" y="189" font-size="12" text-anchor="end" fill="#bebfb5">Software Engineer</text>
+  <rect x="417.85" y="179" width="60.92" height="13" fill="#7dbf92" opacity="0.57"/>
+  
+  <text class="m" x="486.77" y="189" font-size="10.5" fill="#91978a">2015–2016</text>
+</g>
+<g>
+  <text class="m" x="282" y="219" font-size="12" text-anchor="end" fill="#bebfb5">Technology Lead</text>
+  <rect x="478.77" y="209" width="243.69" height="13" fill="#7dbf92" opacity="0.68"/>
+  
+  <text class="m" x="730.46" y="219" font-size="10.5" fill="#91978a">2016–2020</text>
+</g>
+<g>
+  <text class="m" x="282" y="249" font-size="12" text-anchor="end" fill="#bebfb5">Associate VP, Technology</text>
+  <rect x="722.46" y="239" width="121.85" height="13" fill="#7dbf92" opacity="0.79"/>
+  
+  <text class="m" x="852.31" y="249" font-size="10.5" fill="#91978a">2020–2022</text>
+</g>
+<g>
+  <text class="m" x="282" y="279" font-size="12" text-anchor="end" fill="#bebfb5">Senior Associate VP</text>
+  <rect x="844.31" y="269" width="60.92" height="13" fill="#7dbf92" opacity="0.9"/>
+  
+  <text class="m" x="913.23" y="279" font-size="10.5" fill="#91978a">2022–2023</text>
+</g>
+<g>
+  <text class="m" x="282" y="309" font-size="12" text-anchor="end" fill="#efeee7">VP, Technology</text>
+  <rect x="905.23" y="299" width="182.77" height="13" fill="#7dbf92" opacity="1"/>
+  <rect x="1086" y="296.5" width="2" height="18" fill="#7dbf92"/>
+  <text class="m" x="1096" y="309" font-size="10.5" fill="#91978a">2023 → now</text>
+</g>
+</svg>

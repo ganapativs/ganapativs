@@ -1,0 +1,242 @@
+[
+  {
+    "slug": "sparkline",
+    "name": "Sparkline",
+    "tagline": "A trend over ordered values, small enough to sit in a sentence.",
+    "summary": "Weekly revenue. Trending up 200%. Range 3 to 9. Last value 9."
+  },
+  {
+    "slug": "sparkbar",
+    "name": "SparkBar",
+    "tagline": "Compact bars for magnitude, or a win–loss streak of outcomes.",
+    "summary": "Deploys per day. Trending up 125%. Range 2 to 9. Last value 9."
+  },
+  {
+    "slug": "forecast-cone",
+    "name": "ForecastCone",
+    "tagline": "Will we land where we need to?",
+    "summary": "Q4 revenue. Median forecast 42 by week 11 (80% between 33 and 55), from 38 today. The 80% band straddles the 45 target."
+  },
+  {
+    "slug": "bullet",
+    "name": "Bullet",
+    "tagline": "A measure against a target and qualitative bands.",
+    "summary": "Quota. 72 of 80 target."
+  },
+  {
+    "slug": "activity-grid",
+    "name": "ActivityGrid",
+    "tagline": "Calendar or matrix intensity: the contribution-graph shape.",
+    "summary": "Commits. Total 67 over 35 periods. Busiest 4."
+  },
+  {
+    "slug": "trend-arrow",
+    "name": "TrendArrow",
+    "tagline": "Which way is this moving? At glyph size, before any number.",
+    "summary": "Latency vs last week. Down 0.08."
+  },
+  {
+    "slug": "status-dot",
+    "name": "StatusDot",
+    "tagline": "What state is this thing in: shape and color paired, never color alone.",
+    "summary": "API. Status: ok."
+  },
+  {
+    "slug": "progress",
+    "name": "Progress",
+    "tagline": "How far along, exactly: bar plus the percent that is the datum.",
+    "summary": "Onboarding. 68% complete."
+  },
+  {
+    "slug": "rug-strip",
+    "name": "RugStrip",
+    "tagline": "Where the raw observations actually sit: distribution without binning.",
+    "summary": "Pay band. 20 values from 42 to 83, median 58."
+  },
+  {
+    "slug": "mini-bar",
+    "name": "MiniBar",
+    "tagline": "Which category is biggest, and by roughly how much.",
+    "summary": "Sales by region. 4 categories. Highest East 940, lowest North 120."
+  },
+  {
+    "slug": "pictogram-row",
+    "name": "PictogramRow",
+    "tagline": "Counts a human can verify by counting: ●●●○○.",
+    "summary": "Committee seats held. 5 of 8."
+  },
+  {
+    "slug": "seismogram",
+    "name": "Seismogram",
+    "tagline": "When did things happen, and how hard: event density over time.",
+    "summary": "Error bursts. 29 events, peak 11."
+  },
+  {
+    "slug": "heat-strip",
+    "name": "HeatStrip",
+    "tagline": "How intensity evolved, glanceably: the 1×N sibling of ActivityGrid.",
+    "summary": "Load per hour. Trending up 192%. Range 12 to 90. Last value 35."
+  },
+  {
+    "slug": "dot-plot",
+    "name": "DotPlot",
+    "tagline": "A few named values on one scale: minimum ink per comparison.",
+    "summary": "Review scores. 5 categories. Highest Ada 96, lowest Kim 41."
+  },
+  {
+    "slug": "dumbbell",
+    "name": "Dumbbell",
+    "tagline": "Where each row started and ended: hollow to filled, no legend.",
+    "summary": "Band move. From 62,000 to 84,000, up 35%."
+  },
+  {
+    "slug": "slope",
+    "name": "Slope",
+    "tagline": "Who rose and who fell between two moments: crossings read instantly.",
+    "summary": "Before vs after. 5 categories: 3 up, 2 down. Largest change Mid, up 75%."
+  },
+  {
+    "slug": "micro-scatter",
+    "name": "MicroScatter",
+    "tagline": "Are these two variables related? The relationship no other type tells.",
+    "summary": "Latency vs error rate. 24 points. Strong positive relationship (r 0.93)."
+  },
+  {
+    "slug": "segmented-bar",
+    "name": "SegmentedBar",
+    "tagline": "What is this made of, and in what proportions.",
+    "summary": "Browser share. Chrome 62%, Safari 24%, Firefox 9%, Edge 3%, Arc 2%."
+  },
+  {
+    "slug": "histogram-strip",
+    "name": "HistogramStrip",
+    "tagline": "What does the distribution look like? Mode, spread, skew in a cell.",
+    "summary": "Response times. 120 values, most between 42.09 and 47.36."
+  },
+  {
+    "slug": "micro-box",
+    "name": "MicroBox",
+    "tagline": "The p50 and spread of a metric: a five-number summary in a row.",
+    "summary": "p95 latency. Median 42, middle half 35 to 51, range 12 to 96."
+  },
+  {
+    "slug": "progress-ring",
+    "name": "ProgressRing",
+    "tagline": "How complete is this? At icon size, where a bar doesn't fit.",
+    "summary": "Backup. 68% complete."
+  },
+  {
+    "slug": "micro-donut",
+    "name": "MicroDonut",
+    "tagline": "Roughly what is this made of? An honest, capped concession at icon size.",
+    "summary": "Traffic mix. Chrome 62%, Safari 24%, Firefox 9%, Other 5%."
+  },
+  {
+    "slug": "funnel",
+    "name": "Funnel",
+    "tagline": "Where does the pipeline leak? Stage-to-stage conversion in a cell.",
+    "summary": "Signup funnel. 4 stages, 12,400 to 1,116 — overall 9%."
+  },
+  {
+    "slug": "waterfall",
+    "name": "Waterfall",
+    "tagline": "How the deltas compose into the total: P&L in a cell.",
+    "summary": "Net income bridge. From 60 to 87 over 5 steps: +65 gains, −38 losses."
+  },
+  {
+    "slug": "horizon",
+    "name": "Horizon",
+    "tagline": "A wide-range series folded into a slim, dense band.",
+    "summary": "Cluster load. Trending up 900%. Range 2 to 45. Last value 20."
+  },
+  {
+    "slug": "tally-marks",
+    "name": "TallyMarks",
+    "tagline": "How many, counted the way a human counts.",
+    "summary": "Signatures. 23 counted."
+  },
+  {
+    "slug": "dice-pips",
+    "name": "DicePips",
+    "tagline": "A small count or severity, read instantly as a die face.",
+    "summary": "Severity. 4 out of 6."
+  },
+  {
+    "slug": "moon-phase",
+    "name": "MoonPhase",
+    "tagline": "How far through a cycle or period: readable across cultures.",
+    "summary": "Sprint. 68% of the cycle complete."
+  },
+  {
+    "slug": "hourglass",
+    "name": "Hourglass",
+    "tagline": "How much time is gone and how much remains, both at once.",
+    "summary": "Session. 75% elapsed, 25% remaining."
+  },
+  {
+    "slug": "honeycomb",
+    "name": "Honeycomb",
+    "tagline": "How many of the available slots are taken.",
+    "summary": "Occupancy. 34 of 40 seats filled."
+  },
+  {
+    "slug": "constellation",
+    "name": "Constellation",
+    "tagline": "When the rare events happened, and how big.",
+    "summary": "Incidents. 4 events between 0 and 8; largest at 2."
+  },
+  {
+    "slug": "tree-rings",
+    "name": "TreeRings",
+    "tagline": "How growth accumulated, period over period, from the centre out.",
+    "summary": "Account age. 8 years; latest 14, biggest 22 in year 5."
+  },
+  {
+    "slug": "city-skyline",
+    "name": "CitySkyline",
+    "tagline": "How groups compare on size, and how activated each is.",
+    "summary": "Team sizes. 5 teams; tallest Platform at 46."
+  },
+  {
+    "slug": "music-staff",
+    "name": "MusicStaff",
+    "tagline": "The shape of a short series, read as a melody.",
+    "summary": "Sprint melody. Trending up 267%. Range 3 to 11. Last value 11."
+  },
+  {
+    "slug": "thermometer",
+    "name": "Thermometer",
+    "tagline": "Where a value sits on a calibrated range, and how close to the goal.",
+    "summary": "Fundraiser. 72 on a 0–100 scale; target 80."
+  },
+  {
+    "slug": "balance-beam",
+    "name": "BalanceBeam",
+    "tagline": "Which of two sides outweighs, and roughly by how much.",
+    "summary": "Inflow 620 vs Outflow 480; Inflow heavier."
+  },
+  {
+    "slug": "wind-barb",
+    "name": "WindBarb",
+    "tagline": "Which way it's flowing and roughly how hard, in one character.",
+    "summary": "Wind. Southwest (225°), magnitude 32."
+  },
+  {
+    "slug": "win-prob-worm",
+    "name": "WinProbWorm",
+    "tagline": "Who's winning, and when did the lead flip?",
+    "summary": "Win probability. Per the supplied model, home leads at 98%; 3 lead changes, biggest swing +17 at point 8."
+  },
+  {
+    "slug": "waveform",
+    "name": "Waveform",
+    "tagline": "The shape of a high-frequency signal, where its spikes and silences are, at word width.",
+    "summary": "Voice memo. Peak 0.738 at 63% through 200 samples."
+  },
+  {
+    "slug": "quadrant-dot",
+    "name": "QuadrantDot",
+    "tagline": "Where does it sit in the 2×2?",
+    "summary": "Effort vs impact. Impact 9, effort 3 — in the high-impact, low-effort quadrant (2 of 14 peers)."
+  }
+]
