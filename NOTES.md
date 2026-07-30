@@ -1,237 +1,82 @@
 # Notes
 
-Everything needed to ship this, plus what's deliberately not in it.
+One generated image, no dependencies.
 
 ## Install
 
-Commit to `github.com/ganapativs/ganapativs` on `master`:
-
 ```
-README.md                       the short one — ship this
-README-long.md                  the full version, if you ever want it
+README.md
 NOTES.md
 package.json
 .gitignore
-scripts/core.mjs                shared tokens + SVG helpers
-scripts/generate-assets.mjs     masthead, ladder, inks      (hand-set)
-scripts/generate-charts.mjs     the four word-sized charts  (real library)
-scripts/generate-wall.mjs       the 40-type wall            (real library)
-scripts/kannada_path.py         one-off: Kannada -> outlines
-assets/*.svg                    16 files, generated
+scripts/core.mjs               design tokens + SVG helper
+scripts/generate-assets.mjs    builds the header
+scripts/kannada_path.py        one-off: Kannada -> outlines
+assets/masthead-light.svg
+assets/masthead-dark.svg
 assets/_kannada-path.svgfrag
-assets/summaries.json           the library's generated alt text
-assets/wall-manifest.json       the 40 types on the wall
 ```
-
-Your existing `assets/footer-bg.png` is no longer referenced — keep or delete it.
 
 ```bash
-npm install     # @microcharts/react + @microcharts/mcp, both pinned, dev only
-npm run build   # writes all 16 SVGs, light + dark
+npm run build     # writes both header SVGs. No npm install needed — zero deps.
 ```
 
-`react` and `react-dom` aren't needed — the scripts only import `defineTheme` and
-the stylesheet, and the MCP server does the rendering out of process. Verified by
-deleting both from `node_modules` and rebuilding clean.
+`scripts/kannada_path.py` only needs re-running if the Kannada string changes; it
+wants `uharfbuzz`, `fonttools`, and Noto Sans Kannada.
 
-## Two lengths
+## What changed, and why
 
-`README.md` is the short one: masthead, two paragraphs with the word-sized charts
-in them, the note, the wall, and a contact line. About 260 words of visible prose.
+**No rendered charts.** They were embedded as `<img>`, and microcharts aligns inline
+charts with its `.mc-inline` class and `--mc-inline-nudge` custom property. GitHub
+strips all CSS from markdown, so neither reaches the page — the charts could never
+sit on the text baseline, which is exactly how they looked. Not a fixable bug: an
+`<img>` in GitHub markdown can't be baseline-tuned. They're gone, along with the
+`@microcharts/*` dependencies, both chart generators, and `EXTRAS.md`.
 
-`README-long.md` is the earlier full version — career ladder figure, role-by-role
-history, stack table, writing list, off-screen section, ink strip. About 1,030
-words. It duplicates meetguns.com, which is the better home for all of it, and it
-pushes your pinned repositories below a long scroll. Rename it over `README.md` if
-you disagree; both reference only committed assets, so either works as-is.
+**No ink swatch strip.** It was decoration with no job.
 
-The three stages are independent and safe to run on their own. Stages 2 and 3 spawn
-your MCP server via `npx -y @microcharts/mcp`, so they want network on first run and
-nothing after.
+**No email or résumé link.** Both are in the profile sidebar already.
 
-The Kannada outlines are already committed. `scripts/kannada_path.py` only needs
-re-running if you change that string, and it wants `uharfbuzz`, `fonttools`, and
-Noto Sans Kannada.
+**Header is 800px wide.** Measured off the live screenshot: the profile README card
+is about 798 CSS px, so the earlier 1200px and 880px versions were being scaled to
+66% and 91%, which is why the small type looked soft. At 800 it renders 1:1.
 
-## Kept short on purpose
+**The name is printed once.** The second offset plate was meant to read as letterpress
+misregistration, the way it does on meetguns.com. On a dark card at this size it just
+read as a drop shadow on doubled text. If you want it back, add a second `<text>` in
+`masthead()` behind the first with `fill="${t.accent}"`, `opacity:.34` and a
+`translate(2px,1.5px)`.
 
-The README is about 150 words and three figures. It was four times that until it
-became clear how much of it the profile page already shows: your sidebar bio states
-the role and stack, your pinned repos list the projects with live star counts, and
-meetguns.com carries the career arc, the writing and the CV. Anything repeating those
-went to `EXTRAS.md`, paste-ready, with a note on what each one duplicates.
+**Kannada now shares a baseline with the small caps.** ಗಣಪತಿ ವಿ ಎಸ್ sat 3px low
+before. Both now sit on `BASE = 138`, verified at 1px in a browser render. The
+Kannada is scaled to ~15px optical against the 8.5px caps, so it still reads as the
+name rather than as a tag.
 
-**Figures are 880px wide, not 1200.** The profile README card measures about 968 CSS
-px, so a 1200px graphic is scaled to ~78% and 9.5px labels land near 7px. At 880 they
-render 1:1. If you ever move a block into a repo README, that container is wider and
-the figure can grow.
+**Standfirst.** Was *"Engineering leader. At Tracxn since 2015, engineer to VP. Still
+shipping."* — LinkedIn phrasing, and set too small. Now *"Engineer, then lead, then VP
+— one company since 2015."* at 15.5px in Piazzolla, up from 13.5.
 
-## Nothing here needs maintaining
+## The header
 
-The page carries no figure that moves on its own, so it can't quietly go stale.
+Palette and type come from meetguns.com's stylesheet (bundle
+`0756510ea7a1c7d5.css`), OKLCH converted to hex: `#e7eee4` paper, `#03180c` dark
+paper, `#001a0d` ink, `#1b6c46` bottle green, `#7dbf92` its dark twin. Type names
+Anek Latin, Piazzolla and Fragment Mono first and falls back exactly as your CSS
+does. If you change inks again, edit `THEMES` in `scripts/core.mjs` and rebuild.
 
-**Cut for that reason:** all star counts, the star-ledger figure they supported, the
-per-repo star column in the table, and the measured kB numbers (`5.24` median
-against a `7` kB budget). Star counts were the worst offenders — `microcharts` read
-38 in GitHub's cached profile page and 75 live on the same day, so a hand-written
-number is wrong within a week.
+ಗಣಪತಿ ವಿ ಎಸ್ is outlines, not text: webfonts can't load inside an `<img>`-embedded
+SVG, so it would be tofu for anyone without a Kannada font. Shaped with HarfBuzz
+against Noto Sans Kannada — seven glyph clusters, matras and virama correct.
 
-**Kept, because it's structural rather than drifting:** zero runtime dependencies (a
-CI gate, not a measurement), the per-chart gzip budget as a *concept* with no number
-attached, repository names and the year each began, and the design rules.
+Light and dark are separate files behind `<picture>`, so they follow your GitHub
+theme rather than the visitor's OS theme. Motion is progressive enhancement: the
+base styles are the finished state and the rules only draw in under
+`prefers-reduced-motion: no-preference`, so a still render is always correct. The
+one loop is the status dot.
 
-**Two conventions do the work:**
+## If the header arrives static
 
-1. *Volatile-ish numbers live in markdown, never inside a generated SVG.* Editing a
-   sentence is a one-line commit; re-running a build to fix a baked-in label is
-   friction you'd skip. This is why the wall's eyebrow reads "40 CHART TYPES" rather
-   than "40 of 106" — if the catalogue grows, the image is still right.
-2. *Elapsed time is never printed.* Nothing says "eleven years"; the masthead says
-   "At Tracxn since 2015" and the ladder's axis ends at **now** instead of a year.
-   Start years are historical facts. Durations expire every January.
-
-**The one count left** is *fifteen npm packages*, which the TallyMarks chart exists
-to show. It's low-churn — fifteen over a decade — but it is still a count. To bump
-it, change `value: 15` in `scripts/generate-charts.mjs` and rebuild; to drop the
-claim, delete that entry from `INLINE` and the phrase from the README. Your call,
-not mine.
-
-Your next promotion touches three things: `LADDER` in `generate-assets.mjs`,
-`ROLE_STEPS` in `generate-charts.mjs`, and the pictogram's `value: 4`.
-
-## Provenance
-
-Public sources only, checked 30 July 2026. No private repository, internal metric,
-or unpublished work is referenced — the repo data came from GitHub's public search
-API unauthenticated, so nothing private was ever visible.
-
-| Claim | Source |
-| :-- | :-- |
-| Seven roles, four promotions, start years | meetguns.com career arc |
-| 15 npm packages | meetguns.com/llms.txt |
-| Zero runtime dependencies, per-chart gzip budget | microcharts.dev/llms.txt, docs/design-notes |
-| Repository names, years, one-line descriptions | your own repo READMEs, via meetguns.com/work |
-| Chart shapes and data on the wall | each type's own `sample` from `get_microchart` |
-| Palette, type stacks, ink names | meetguns.com stylesheet, bundle `0756510ea7a1c7d5.css` |
-
-## What's library-rendered and what's hand-set
-
-Worth being precise about, given the lie-factor rule.
-
-**Rendered by `@microcharts/react`** — the four word-sized charts in the opening
-sentences and all forty on the wall, through your own MCP server
-(`render_microchart`), so the geometry is whatever the library actually ships. The
-wall's data is each type's documented `sample`, so nothing on it is invented. Their
-alt text is the string your summary generator wrote, captured to
-`assets/summaries.json` and injected into the README — not a description I typed.
-Theming is `defineTheme({ extends: 'editorial', … })` seeded with the tokens lifted
-from your stylesheet; `positive` and `negative` are left alone, because the library
-keeps them on a colour-blind-safe pair and that isn't my call to override.
-
-**Hand-set** — the masthead, the career ladder, and the ink strip. These are
-typographic compositions that happen to contain data, not chart types, so there's
-nothing in the catalogue to render them with.
-
-## How it's built
-
-**Palette and type are yours, not approximations.** From
-`meetguns.com/_next/static/css/0756510ea7a1c7d5.css`, OKLCH converted to hex:
-`#e7eee4` paper, `#03180c` dark paper, `#1b6c46` bottle green, `#7dbf92` its dark
-twin, `#001a0d` ink. The six categorical slots map to your six inks in order —
-bottle green, brass, oxblood, dust blue, aubergine, umber. Type names Anek Latin,
-Piazzolla and Fragment Mono first and falls back exactly as your CSS does.
-
-Rebuilt against the bottle-green palette, replacing the earlier warm one. If you
-change inks again, the only edits are `THEMES` in `scripts/core.mjs`, `INKS` in
-`generate-assets.mjs`, and `SITE` in both library generators — then `npm run build`.
-
-**One collision worth your eye.** Your accent is now a green (`#1b6c46`), and
-microcharts' `--mc-positive` is also a green (`#0e7a5f`) — about 31 units apart in
-RGB, close enough to read as the same colour in a word-sized mark. So an
-accent-coloured mark and a good-direction mark can look alike, which strains the
-"colour encodes, never decorates" rule. I have *not* changed it, because your
-library keeps that pair colour-blind-safe on purpose and overriding your valence
-colours isn't my call. It's also largely self-mitigating: your own rule doubles
-valence with glyph or position, never colour alone, so StatusDot, TrendArrow and
-Waterfall stay readable. If you'd rather separate them, either set
-`positive: '#0e6a7a'`-ish (bluer) in the `defineTheme` call in both generators, or
-theme the charts with a non-green ink such as `dust blue`. Worth checking on
-meetguns.com too, since the same pairing applies there.
-
-**Motion is progressive enhancement.** Base styles are the finished, legible state;
-animation is layered on only inside
-`@media (prefers-reduced-motion: no-preference)`. Reduced motion, GitHub's mobile
-app, and any still rasteriser therefore get a correct render rather than a blank
-panel. The masthead's second ink plate settles into register once and stops. The
-only loop on the page is the status dot — the same exemption your own design notes
-carve out, because a monitoring dot holding still reads as a stopped feed.
-
-**Kannada is outlines, not text.** Webfonts can't load inside an `<img>`-embedded
-SVG, so ಗಣಪತಿ ವಿ ಎಸ್ would have been tofu for anyone without a Kannada font. It's
-shaped with HarfBuzz against Noto Sans Kannada and converted to paths — seven glyph
-clusters, matras and virama correct.
-
-**Themes follow GitHub, not the OS.** Each graphic is a light/dark pair behind
-`<picture>` + `prefers-color-scheme`. The same query *inside* a single SVG follows
-the operating system instead, which desyncs the moment someone pins GitHub to dark
-on a light machine. The per-file token overrides are unlayered `:root` rules, so they
-beat the library's layered `:where(:root)` and its own dark block — each file is
-deterministically one theme.
-
-## One bug found in @microcharts/mcp
-
-`render_microchart` with `format: "svg"` inlines the stylesheet, which contains:
-
-```css
-@property --mc-seat{syntax: "<number>"; inherits: false; initial-value: 0;}
-```
-
-Inside a `<style>` element in a standalone `.svg`, that `<number>` parses as an
-element start tag. Browsers parse `image/svg+xml` as XML, so the file fails to parse
-and **the image renders as nothing** — which defeats the purpose of the `svg`
-format, whose whole job is a self-contained file. It's invisible if you only drop
-the markup inline into HTML, where `<style>` is a raw-text element.
-
-One-line fix at the emit site — wrap the inlined CSS in CDATA:
-
-```
-<style><![CDATA[ …stylesheet… ]]></style>
-```
-
-Both generator scripts patch this locally in `cdataWrapStyles()`, so this README is
-unaffected either way. Worth fixing upstream, and worth a docs test that parses one
-`format:"svg"` result as XML.
-
-Two smaller notes from the same session. `get_microchart` takes `slug` while
-`render_microchart` takes `type`, which is an easy trip-up for an agent doing both in
-one flow. And `delta` renders as an HTML `<span>` wrapping a glyph `<svg>`, so it
-can't nest inside a composed SVG the way the other 39 can — I put `ForecastCone` on
-the wall instead. The validation errors are genuinely good, though: the MiniBar one
-named the exact shape and pointed at `get_microchart` for a sample.
-
-## Two things to check on first push
-
-1. **Animation.** GitHub proxies images through camo. CSS animation inside an
-   `<img>`-loaded SVG normally survives, but if the masthead arrives static, swap the
-   absolute `https://github.com/ganapativs/ganapativs/raw/master/assets/…` URLs for
-   relative `assets/…` ones. Everything stays legible either way — that's what the
-   progressive-enhancement structure buys.
-2. **Baseline alignment.** The inline charts sit on the text baseline, which is what
-   you want. If one looks a pixel off against your rendered body text, nudge the
-   `height` attribute on that single `<img>`.
-
-Verified before shipping: all 16 SVGs parse as XML and load as images in headless
-Chromium under both `prefers-reduced-motion` settings; all 40 wall cells were
-pixel-checked for drawn ink; the accent resolves to `rgb(27,108,70)` in light and
-`rgb(125,191,146)` in dark.
-
-## If you want to go further
-
-- **Pin the versions.** `npx -y @microcharts/mcp` currently resolves to 0.1.7
-  against `@microcharts/react` 0.11.0. Pin both so a future release can't silently
-  redraw the page.
-- **Let the wall grow itself.** It hard-codes 40 slugs. Reading
-  `microcharts://catalog` and taking the first N of each collection would keep it
-  representative as the catalogue changes, with no number to update.
-- **Drop `talks` in.** It's public and thin; if you ever write up TinyConf 2, that's
-  a natural row in the writing section.
+GitHub proxies images through camo. CSS animation inside an `<img>`-loaded SVG
+normally survives, but if the rules don't draw in, swap the absolute
+`https://github.com/ganapativs/ganapativs/raw/master/assets/…` URLs for relative
+`assets/…` ones. It stays legible either way.

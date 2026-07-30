@@ -1,31 +1,33 @@
 <!--
   github.com/ganapativs — profile README
-  Graphics: `npm run build`. Optional longer blocks live in EXTRAS.md.
+  The header image is generated: `npm run build` (no dependencies). See NOTES.md.
 -->
 
 <a href="https://meetguns.com">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/ganapativs/ganapativs/raw/master/assets/masthead-dark.svg">
-  <img alt="Ganapati V S — VP, Technology at Tracxn, Bengaluru. The name is printed twice, the second plate slightly out of register, the way a press looks when the plates don't line up." src="https://github.com/ganapativs/ganapativs/raw/master/assets/masthead-light.svg">
-</picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/ganapativs/ganapativs/raw/master/assets/masthead-dark.svg">
+    <img alt="Ganapati V S — VP, Technology at Tracxn, Bengaluru. Engineer, then lead, then VP — one company since 2015." src="https://github.com/ganapativs/ganapativs/raw/master/assets/masthead-light.svg">
+  </picture>
 </a>
 
-Engineer in Bengaluru. At [Tracxn](https://tracxn.com) since 2015, engineer to VP <picture><source media="(prefers-color-scheme: dark)" srcset="https://github.com/ganapativs/ganapativs/raw/master/assets/inline-ladder-dark.svg"><img alt="Role level by year, since 2013. Trending up by 6. Range 0 to 6. Last value 6." src="https://github.com/ganapativs/ganapativs/raw/master/assets/inline-ladder-light.svg" width="92" height="20"></picture>, four of those steps promotions <picture><source media="(prefers-color-scheme: dark)" srcset="https://github.com/ganapativs/ganapativs/raw/master/assets/inline-promos-dark.svg"><img alt="Promotions at one company. 4 of 4." src="https://github.com/ganapativs/ganapativs/raw/master/assets/inline-promos-light.svg" width="58" height="20"></picture>. Fifteen npm packages on the side <picture><source media="(prefers-color-scheme: dark)" srcset="https://github.com/ganapativs/ganapativs/raw/master/assets/inline-npm-dark.svg"><img alt="Published npm packages. 15 counted." src="https://github.com/ganapativs/ganapativs/raw/master/assets/inline-npm-light.svg" width="80" height="20"></picture>. Most weeks I'm still writing code.
+I'm an engineer in Bangalore. I joined [Tracxn](https://tracxn.com) in 2015 and I'm VP of Technology there now. The job is mostly the team these days — the frontend hiring loop and the rubric we interview against, architecture reviews, RFCs, framework upgrades, and getting things out of people's way. Most weeks I'm still writing code with them.
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://github.com/ganapativs/ganapativs/raw/master/assets/inline-status-dark.svg"><img alt="Shipping. Status: ok." src="https://github.com/ganapativs/ganapativs/raw/master/assets/inline-status-light.svg" width="16" height="20"></picture> Building **[microcharts](https://microcharts.dev)** — word-sized charts for React, small enough to sit inside a sentence, exactly like the three above. Zero runtime dependencies, accessible by default, RSC-safe.
+### What I'm working on
 
-> [!NOTE]
-> Those aren't pictures of charts. They're rendered by `@microcharts/react` itself at
-> build time, and each one's alt text is the sentence its own summary generator wrote
-> from the data — *"Trending up by 6. Range 0 to 6. Last value 6."*
+**[microcharts](https://microcharts.dev)** — word-sized charts for React. 106 chart types small enough to sit in a sentence or a table cell, with zero runtime dependencies and a screen-reader summary generated for every chart from its own data. No pie, no gauge, no waffle: at that size they mislead more than they inform, so they're designed out rather than switched off.
 
-Everything else — the work, the writing, the CV — is at **[meetguns.com](https://meetguns.com)**.
+**Agentic AI at Tracxn** — a customer-facing assistant, the API documentation portal it lives in, and the MCP server behind it. Intent routing, versioned prompts behind an eval harness, prompt-injection defence, streaming.
 
-[microcharts.dev](https://microcharts.dev) · [writing](https://meetguns.com/blog) · [résumé](https://meetguns.com/resume) · [@ganapativs](https://x.com/ganapativs) · [linkedin](https://linkedin.com/in/ganapativs) · [npm](https://www.npmjs.com/~ganapativs) · **[vsg.inbox@gmail.com](mailto:vsg.inbox+github@gmail.com)**
+### Things that stuck around
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/ganapativs/ganapativs/raw/master/assets/inks-dark.svg">
-  <img alt="Six colour swatches used across meetguns.com: bottle green, brass, oxblood, dust blue, aubergine, umber. This page is set in the first of them, bottle green." src="https://github.com/ganapativs/ganapativs/raw/master/assets/inks-light.svg" width="660" height="58">
-</picture>
+[**bttn.css**](https://github.com/ganapativs/bttn.css) was a CSS button library in 2016 that Product Hunt picked up; ten years later it's still the thing strangers write to me about. [**react-spectrum**](https://github.com/ganapativs/react-spectrum) generates colourful text placeholders from any string. [**sgb**](https://sgb.vercel.app) ranks India's Sovereign Gold Bonds by what a buyer actually earns at today's price rather than the coupon printed on the face value — a scraper on a cron and one JSON file, still running four years on.
 
-<sub>Six inks, named after one city. This page is set in the first. Charts by [`@microcharts/react`](https://microcharts.dev) · [`scripts/`](scripts/) rebuilds them.</sub>
+The most useful thing I've built isn't public: an internal React component library the team has shipped on for the last decade.
+
+### Writing
+
+- [**Introducing microcharts**](https://meetguns.com/blog/microcharts-word-sized-charts) — why I built 106 tiny chart types, and why the constraints turned out to be the product
+- [**Aborting a fetch request**](https://meetguns.com/blog/aborting-a-fetch-request) — `AbortController`, the gotchas, and why your dropdowns flicker without it
+- [**Babel plugins: `loose` mode caveats**](https://meetguns.com/blog/babel-plugins-loose-mode-caveats) — what `loose` actually trades away for smaller output
+
+Longer version, with the work and the photographs, at **[meetguns.com](https://meetguns.com)**.
