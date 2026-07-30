@@ -36,4 +36,4 @@ Most of what I've built is internal and isn't on here, mainly a React component 
 - [Aborting a fetch request](https://meetguns.com/blog/aborting-a-fetch-request) — `AbortController`, and why your dropdowns flicker without it
 - [Babel plugins: `loose` mode caveats](https://meetguns.com/blog/babel-plugins-loose-mode-caveats) — what you give up for the smaller output
 
-More at [meetguns.com](https://meetguns.com).
+More at [meetguns.com](https://meetguns.com) :)
