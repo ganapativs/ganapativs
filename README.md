@@ -10,24 +10,30 @@
   </picture>
 </a>
 
-I'm an engineer in Bangalore. I joined [Tracxn](https://tracxn.com) in 2015 and I'm VP of Technology there now. The job is mostly the team these days — the frontend hiring loop and the rubric we interview against, architecture reviews, RFCs, framework upgrades, and getting things out of people's way. Most weeks I'm still writing code with them.
+-- -- -- -- -- -- -- -- -- -- -- -- -- 
+
+I'm an engineer in Bangalore. I've been at [Tracxn](https://tracxn.com) since 2015 and currently working as VP of Technology.
+
+Most of my time goes to the team these days. Hiring and interviews, design reviews, RFCs, planning new things, etc. I still write code most weeks and I'd rather not stop.
 
 ### What I'm working on
 
-**[microcharts](https://microcharts.dev)** — word-sized charts for React. 106 chart types small enough to sit in a sentence or a table cell, with zero runtime dependencies and a screen-reader summary generated for every chart from its own data. No pie, no gauge, no waffle: at that size they mislead more than they inform, so they're designed out rather than switched off.
+**[microcharts](https://microcharts.dev)** — a React library of very small charts. Sparklines, bars, deltas, bullets, sized to sit inline with text or inside a table cell. 106 types so far, no runtime dependencies, and each one writes its own description for screen readers. There's no pie chart or gauge in it, deliberately.
 
-**Agentic AI at Tracxn** — a customer-facing assistant, the API documentation portal it lives in, and the MCP server behind it. Intent routing, versioned prompts behind an eval harness, prompt-injection defence, streaming.
+**AI work at Tracxn** — a customer-facing assistant, the API docs portal, and MCP servers, etc.
 
-### Things that stuck around
+### Older things
 
-[**bttn.css**](https://github.com/ganapativs/bttn.css) was a CSS button library in 2016 that Product Hunt picked up; ten years later it's still the thing strangers write to me about. [**react-spectrum**](https://github.com/ganapativs/react-spectrum) generates colourful text placeholders from any string. [**sgb**](https://sgb.vercel.app) ranks India's Sovereign Gold Bonds by what a buyer actually earns at today's price rather than the coupon printed on the face value — a scraper on a cron and one JSON file, still running four years on.
+**[bttn.css](https://github.com/ganapativs/bttn.css)** — a CSS button library from 2016. It got picked up on Product Hunt and people still use it, which I didn't expect at the time.
+**[react-spectrum](https://github.com/ganapativs/react-spectrum)** — makes colourful placeholder text out of any string.
+**[sgb](https://sgb.vercel.app)** — tracks India's Sovereign Gold Bonds, sorted by what you'd actually earn buying at today's price instead of the coupon on paper. It's a cron job and a JSON file. Running since 2021.
 
-The most useful thing I've built isn't public: an internal React component library the team has shipped on for the last decade.
+Most of what I've built is internal and isn't on here, mainly a React component library the team has been using for about ten years.
 
 ### Writing
 
-- [**Introducing microcharts**](https://meetguns.com/blog/microcharts-word-sized-charts) — why I built 106 tiny chart types, and why the constraints turned out to be the product
-- [**Aborting a fetch request**](https://meetguns.com/blog/aborting-a-fetch-request) — `AbortController`, the gotchas, and why your dropdowns flicker without it
-- [**Babel plugins: `loose` mode caveats**](https://meetguns.com/blog/babel-plugins-loose-mode-caveats) — what `loose` actually trades away for smaller output
+- [Introducing microcharts](https://meetguns.com/blog/microcharts-word-sized-charts) — why I made 106 tiny chart types
+- [Aborting a fetch request](https://meetguns.com/blog/aborting-a-fetch-request) — `AbortController`, and why your dropdowns flicker without it
+- [Babel plugins: `loose` mode caveats](https://meetguns.com/blog/babel-plugins-loose-mode-caveats) — what you give up for the smaller output
 
-Longer version, with the work and the photographs, at **[meetguns.com](https://meetguns.com)**.
+More at [meetguns.com](https://meetguns.com).
