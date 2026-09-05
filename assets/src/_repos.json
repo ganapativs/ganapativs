@@ -1,0 +1,306 @@
+[
+{
+"archived": false,
+"desc": "Awesome buttons for awesome projects!",
+"lang": "CSS",
+"name": "bttn.css",
+"stars": 2048,
+"year": 2016
+},
+{
+"archived": false,
+"desc": "Generate colorful text placeholders \ud83c\udfa8",
+"lang": "TypeScript",
+"name": "react-spectrum",
+"stars": 318,
+"year": 2019
+},
+{
+"archived": false,
+"desc": "Word-sized charts for React, made for LLMs and humans \u2014 106 chart types, zero runtime dependencies, accessible by default, RSC-safe.",
+"lang": "TypeScript",
+"name": "microcharts",
+"stars": 167,
+"year": 2026
+},
+{
+"archived": false,
+"desc": "Fancy autocomplete using preact + redux + animate.css",
+"lang": "JavaScript",
+"name": "preact-redux-autocompete",
+"stars": 34,
+"year": 2016
+},
+{
+"archived": false,
+"desc": "Dynamically load and render any react module(Component or an HOC) using dynamic import \ud83c\udf89",
+"lang": "JavaScript",
+"name": "react-dynamic-import",
+"stars": 28,
+"year": 2018
+},
+{
+"archived": false,
+"desc": "Delightful, virtualized modern infinite scroller \ud83c\udf89",
+"lang": "JavaScript",
+"name": "react-delightful-scroller",
+"stars": 24,
+"year": 2019
+},
+{
+"archived": false,
+"desc": "Portfolio \ud83c\udf89",
+"lang": "JavaScript",
+"name": "portfolio",
+"stars": 16,
+"year": 2018
+},
+{
+"archived": false,
+"desc": "Cache with confidence \ud83c\udf89 Ultra fast & tiny in-memory JavaScript cache with near realtime cache expiry feature \u26a1",
+"lang": "JavaScript",
+"name": "pure-cache",
+"stars": 11,
+"year": 2017
+},
+{
+"archived": false,
+"desc": "Create WARC (Web ARChive) of a web page",
+"lang": "JavaScript",
+"name": "puppeteer-warc",
+"stars": 5,
+"year": 2025
+},
+{
+"archived": false,
+"desc": "Productivity extension to focus on your top priority task in browser new tab.",
+"lang": "JavaScript",
+"name": "priority-browser-extension",
+"stars": 3,
+"year": 2024
+},
+{
+"archived": true,
+"desc": "Bypass the age restricted content on YouTube",
+"lang": "JavaScript",
+"name": "bypass-yt",
+"stars": 2,
+"year": 2019
+},
+{
+"archived": false,
+"desc": "Gatsby v8 serialize issue repro",
+"lang": "JavaScript",
+"name": "gatsby-v8-issue-repro",
+"stars": 2,
+"year": 2019
+},
+{
+"archived": false,
+"desc": "Webpack3 boilerplate for building SPA / PWA / offline front-end apps with Preact, Redux & React router",
+"lang": "JavaScript",
+"name": "preact-redux-react-router-starter",
+"stars": 2,
+"year": 2017
+},
+{
+"archived": false,
+"desc": "\u23ec Infinite scroll component for React in ES6",
+"lang": "JavaScript",
+"name": "react-infinite-scroll-fixed",
+"stars": 1,
+"year": 2015
+},
+{
+"archived": false,
+"desc": "Image tagging using Jquery",
+"lang": "JavaScript",
+"name": "taggdX",
+"stars": 1,
+"year": 2015
+},
+{
+"archived": false,
+"desc": "Angular Calendar with month and day traversal, event list",
+"lang": "CSS",
+"name": "angular_calendar",
+"stars": 0,
+"year": 2015
+},
+{
+"archived": false,
+"desc": "Base babel config for react setup",
+"lang": "JavaScript",
+"name": "babel-preset-react",
+"stars": 0,
+"year": 2019
+},
+{
+"archived": false,
+"desc": null,
+"lang": null,
+"name": "cassetterocks.github.io",
+"stars": 0,
+"year": 2017
+},
+{
+"archived": false,
+"desc": "Base ESLint config for react setup",
+"lang": "JavaScript",
+"name": "eslint-config-react",
+"stars": 0,
+"year": 2019
+},
+{
+"archived": false,
+"desc": "Base ESLint config for react+typescript setup",
+"lang": "JavaScript",
+"name": "eslint-config-react-ts",
+"stars": 0,
+"year": 2019
+},
+{
+"archived": false,
+"desc": "\u2728special \u2728 repository \ud83c\udf89",
+"lang": "JavaScript",
+"name": "ganapativs",
+"stars": 0,
+"year": 2020
+},
+{
+"archived": false,
+"desc": "#stuffs",
+"lang": null,
+"name": "ganapativs.github.io",
+"stars": 0,
+"year": 2017
+},
+{
+"archived": false,
+"desc": null,
+"lang": "JavaScript",
+"name": "html-webpack-plugin-bug-reproduce",
+"stars": 0,
+"year": 2018
+},
+{
+"archived": false,
+"desc": "JavaScript/HTML Implementation of Excel Sheet",
+"lang": "CSS",
+"name": "HTMLExcel",
+"stars": 0,
+"year": 2015
+},
+{
+"archived": false,
+"desc": "Internship Project Repository.",
+"lang": "JavaScript",
+"name": "Intern",
+"stars": 0,
+"year": 2013
+},
+{
+"archived": true,
+"desc": "Library API Pages",
+"lang": "CSS",
+"name": "Library",
+"stars": 0,
+"year": 2014
+},
+{
+"archived": false,
+"desc": "Get network connection details of device in browser.",
+"lang": "JavaScript",
+"name": "netinfo",
+"stars": 0,
+"year": 2017
+},
+{
+"archived": false,
+"desc": "Minimal boilerplate for creating NPM packages",
+"lang": "JavaScript",
+"name": "npm-minimal-boilerplate",
+"stars": 0,
+"year": 2018
+},
+{
+"archived": false,
+"desc": "Portfolio - V2",
+"lang": "TypeScript",
+"name": "portfolio-v2",
+"stars": 0,
+"year": 2026
+},
+{
+"archived": false,
+"desc": "Random React native resources on the web",
+"lang": null,
+"name": "react-native-resources",
+"stars": 0,
+"year": 2016
+},
+{
+"archived": false,
+"desc": "Minimal boilerplate for creating React NPM packages",
+"lang": "JavaScript",
+"name": "react-npm-minimal-boilerplate",
+"stars": 0,
+"year": 2016
+},
+{
+"archived": false,
+"desc": "Rust Learning Plan documentation",
+"lang": null,
+"name": "rust-learning-plan",
+"stars": 0,
+"year": 2025
+},
+{
+"archived": false,
+"desc": "Customized Flexible social graph with gravity and physics based on Springy.",
+"lang": "JavaScript",
+"name": "Springy-Social-Graph",
+"stars": 0,
+"year": 2014
+},
+{
+"archived": false,
+"desc": "Conference/Meetup talks",
+"lang": "JavaScript",
+"name": "talks",
+"stars": 0,
+"year": 2019
+},
+{
+"archived": false,
+"desc": "Test Part",
+"lang": "JavaScript",
+"name": "Test",
+"stars": 0,
+"year": 2013
+},
+{
+"archived": false,
+"desc": null,
+"lang": "JavaScript",
+"name": "TestBuild",
+"stars": 0,
+"year": 2013
+},
+{
+"archived": false,
+"desc": "Google Polymer Experiement",
+"lang": "JavaScript",
+"name": "TrackShake",
+"stars": 0,
+"year": 2015
+},
+{
+"archived": false,
+"desc": "Canvas+svg+webgl Triangles backgrounds for Websites",
+"lang": "JavaScript",
+"name": "Triangles-Background",
+"stars": 0,
+"year": 2014
+}
+]

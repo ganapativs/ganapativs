@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""One-off inputs for the header: font subsets and the portrait's luminance grid.
+"""One-off inputs for the header: font subsets and the open-source repo list.
 
-Run only when a font, the portrait or the character set changes:
+Run when a font changes, the character set changes, or the star counts should
+be refreshed:
 
-    python3 scripts/prepare.py      # wants: fonttools, brotli, Pillow
+    python3 scripts/prepare.py      # wants: fonttools, brotli
 
-Writes assets/src/_fonts.json and assets/src/_portrait.json, both committed,
+Writes assets/src/_fonts.json and assets/src/_repos.json, both committed,
 which scripts/generate-assets.mjs reads with zero dependencies.
 
 Fonts are the site's own: Hanken Grotesk (language) and IBM Plex Mono
@@ -14,9 +15,10 @@ site's committed name cut, copied verbatim from meetguns.com's repo (fonts/).
 Webfonts cannot be fetched from inside an <img>-loaded SVG, so they are
 embedded as data URIs instead.
 
-The portrait grid is the same sample the site takes in Portrait.tsx: a square
-cover-crop biased 20% up, 56x56, luminance auto-levelled across the opaque
-cells only. Transparent cells are -1.
+The repo list is every original (non-fork) public repository on the account
+from the GitHub API, with stars, year created and language, sorted by stars.
+The header prints the count, the star total and six of the names, so a
+rebuild after this is what keeps those numbers true.
 """
 import base64, io, json, sys, urllib.request
 from pathlib import Path
@@ -24,9 +26,8 @@ from pathlib import Path
 try:
     from fontTools import subset
     from fontTools.ttLib import TTFont
-    from PIL import Image
 except ImportError:
-    sys.exit("needs: pip install 'fonttools[woff]' brotli Pillow")
+    sys.exit("needs: pip install 'fonttools[woff]' brotli")
 
 SRC = Path(__file__).resolve().parent.parent / "assets" / "src"
 CDN = "https://cdn.jsdelivr.net/npm/@fontsource/{pkg}@5/files/{pkg}-latin-{w}-normal.woff2"
@@ -63,32 +64,25 @@ def fonts():
     (SRC / "_fonts.json").write_text(json.dumps(out))
 
 
-def portrait(n=56):
-    im = Image.open(SRC / "portrait.webp").convert("RGBA")
-    w, h = im.size
-    if w > h:
-        box = ((w - h) // 2, 0, (w - h) // 2 + h, h)
-    else:
-        top = int((h - w) * 0.2)
-        box = (0, top, w, top + w)
-    im = im.crop(box).resize((n, n), Image.LANCZOS)
-    px = im.load()
-    lum, lo, hi = [], 1.0, 0.0
-    for y in range(n):
-        for x in range(n):
-            r, g, b, a = px[x, y]
-            if a <= 100:
-                lum.append(-1.0)
-                continue
-            l = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255
-            lum.append(l)
-            lo, hi = min(lo, l), max(hi, l)
-    span = hi - lo
-    grid = [round((l - lo) / span, 3) if l >= 0 and span > 0.05 else l for l in lum]
-    (SRC / "_portrait.json").write_text(json.dumps({"n": n, "lum": grid}))
-    print(f"portrait: {n}x{n}, {sum(1 for l in grid if l >= 0)} opaque cells, levels {lo:.2f}..{hi:.2f}")
+def repos(user="ganapativs"):
+    out = []
+    for page in (1, 2, 3):
+        url = f"https://api.github.com/users/{user}/repos?per_page=100&type=owner&page={page}"
+        req = urllib.request.Request(url, headers={"Accept": "application/vnd.github+json", "User-Agent": "ganapativs-profile"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            rows = json.load(r)
+        if not rows:
+            break
+        out += [
+            {"name": r["name"], "stars": r["stargazers_count"], "year": int(r["created_at"][:4]),
+             "lang": r["language"], "desc": r["description"], "archived": r["archived"]}
+            for r in rows if not r["fork"]
+        ]
+    out.sort(key=lambda r: -r["stars"])
+    (SRC / "_repos.json").write_text(json.dumps(out, indent=0))
+    print(f"repos: {len(out)} originals, {sum(r['stars'] for r in out)} stars")
 
 
 if __name__ == "__main__":
     fonts()
-    portrait()
+    repos()

@@ -5,11 +5,11 @@
  *
  * The header is one sheet of meetguns.com's drawing at 800 x 360: the frame
  * with its registration ticks, the measuring edge, the mark and the name, the
- * ink tray, the drawing title on its rule with the compass, the claim, and the
- * portrait printed as a 56 x 56 halftone and dimensioned like a part.
+ * ink tray, the drawing title on its rule with the compass, the claim, and a
+ * specimen tray of six open-source projects, each drawn as the part it is.
  *
  * Everything the image says is read off the live site's constants (see
- * TOKENS below and the sync note in NOTES.md). Fonts and the portrait grid are
+ * TOKENS below and the sync note in NOTES.md). Fonts and the repo list are
  * pre-cut by scripts/prepare.py into assets/src/*.json.
  *
  * No animation, on purpose: the site's own rule is that nothing moves unless
@@ -20,7 +20,14 @@ import { readFileSync, writeFileSync } from 'node:fs';
 const SRC = new URL('../assets/src/', import.meta.url);
 const OUT = new URL('../assets/', import.meta.url);
 const FONTS = JSON.parse(readFileSync(new URL('_fonts.json', SRC), 'utf8'));
-const PORTRAIT = JSON.parse(readFileSync(new URL('_portrait.json', SRC), 'utf8'));
+// Every original (non-fork) public repo on the account, from the GitHub API
+// via scripts/prepare.py: name, stars, year created, language. Sorted by stars.
+const REPOS = JSON.parse(readFileSync(new URL('_repos.json', SRC), 'utf8'));
+const TOTAL_STARS = REPOS.reduce((a, r) => a + r.stars, 0);
+const NPM_PACKAGES = 16;                                      // lib/resume.ts PUBLIC_WORK
+const starsOf = (name) => REPOS.find((r) => r.name === name)?.stars ?? 0;
+const fmt = (v) => v.toLocaleString('en-US');
+
 
 /* ---- the site's tokens, mirrored ---------------------------------------------
    styles/press/tokens.css and lib/ink.ts in ganapativs/portfolio-v2. Change
@@ -74,10 +81,7 @@ const F = { x: 16.5, y: 16.5, w: W - 33, h: H - 33 };          // the frame
 const M = 40;                                                    // content margin
 const R = W - M;                                                 // right content edge
 const HEAD = { cy: 46, rule: 78 };                               // header row, its rule
-const PT = { x: 548, y: 104, s: 180 };                           // the portrait box
-const DIM = 20;                                                  // dimension line offset from the box
-const ANNO = 15;                                                 // dimension line to annotation baseline (8px clear + cap height)
-const BASE = PT.y + PT.s + DIM + ANNO;                           // one shared foot baseline: the width label and the ask line
+const BASE = 319;                                                // one shared foot baseline: the ask line, and the tray's bottom rule sits on it
 
 function fontFace(fam, weight, key) {
   return `@font-face{font-family:${fam};font-weight:${weight};font-display:block;src:url(data:font/woff2;base64,${FONTS[key]}) format("woff2")}`;
@@ -130,67 +134,77 @@ function compass(cx, cy, t, accent) {
 }
 
 /**
- * The halftone. The same print Portrait.tsx makes: on paper the darkness is
- * ink, on graphite the print emits (lum^1.2), the midtones 0.32..0.52 go in
- * the live ink, nothing under 0.14 is printed. Dots are zero-length subpaths
- * under a round cap, grouped by colour and radius, which is a tenth the bytes
- * of a <circle> each.
+ * Fig. C: six projects on a specimen tray, each drawn as the part it is, in
+ * four strokes or fewer, with its name and one true number.
  */
-function halftone(t, accent) {
-  const { n: N, lum } = PORTRAIT;
-  const cell = PT.s / N;                       // CSS px per cell
-  const groups = new Map();
-  for (let i = 0; i < lum.length; i++) {
-    const l = lum[i];
-    if (l < 0) continue;
-    const st = t.dark ? Math.pow(l, 1.2) : 1 - l;
-    if (st < 0.14) continue;
-    const cap = t.dark ? 0.46 : 0.6;
-    let r = Math.max(0.5 / cell, Math.min(cap, st * 0.72));
-    r = Math.round(r * 50) / 50;               // 0.02-cell steps: ~20 groups a colour
-    const color = st > 0.32 && st < 0.52 ? accent : t.ink;
-    const key = `${color}|${r}`;
-    const x = (i % N) + 0.5, y = Math.floor(i / N) + 0.5;
-    groups.set(key, (groups.get(key) ?? '') + `M${x} ${y}h0`);
-  }
-  let paths = '';
-  for (const [key, d] of groups) {
-    const [color, r] = key.split('|');
-    paths += `<path d="${d}" stroke="${color}" stroke-width="${n(r * 2)}"/>`;
-  }
-  return `<svg x="${PT.x}" y="${PT.y}" width="${PT.s}" height="${PT.s}" viewBox="0 0 ${N} ${N}" fill="none" stroke-linecap="round">${paths}</svg>`;
-}
-
-/** An arrowhead at (x,y) pointing along (dx,dy), 7px long, filled. */
-function arrow(x, y, dx, dy, c) {
-  const L = 7, Wd = 2.6;
-  const px = -dy, py = dx;
-  const bx = x - dx * L, by = y - dy * L;
-  return `<path d="M${n(x)} ${n(y)}L${n(bx + px * Wd)} ${n(by + py * Wd)}L${n(bx - px * Wd)} ${n(by - py * Wd)}Z" fill="${c}"/>`;
-}
-
-/** The portrait's two dimensions and its callout, as the site draws them. */
-function dimensions(t, accent) {
-  const { x, y, s } = PT;
-  const r = x + s, b = y + s;
-  const dx = r + DIM, dy = b + DIM;               // dimension lines
-  let g = `<g stroke="${t.rule}">` +
-    `<path d="M${r + 4} ${y + 0.5}H${dx + 6}M${r + 4} ${b - 0.5}H${dx + 6}"/>` +   // extension, height
-    `<path d="M${x + 0.5} ${b + 4}V${dy + 6}M${r - 0.5} ${b + 4}V${dy + 6}"/>` +   // extension, width
-    `</g>`;
-  g += `<g stroke="${t.ink3}">` +
-    `<path d="M${dx + 0.5} ${y + 7}V${b - 7}"/>` +
-    `<path d="M${x + 7} ${dy + 0.5}H${r - 7}"/></g>`;
-  g += arrow(dx + 0.5, y + 0.5, 0, -1, t.ink3) + arrow(dx + 0.5, b - 0.5, 0, 1, t.ink3) +
-       arrow(x + 0.5, dy + 0.5, -1, 0, t.ink3) + arrow(r - 0.5, dy + 0.5, 1, 0, t.ink3);
-  const mid = y + s / 2;
-  g += `<text class="anno" x="${dx + ANNO}" y="${mid}" transform="rotate(-90 ${dx + ANNO} ${mid})" text-anchor="middle">${CAREER_YEARS} yrs experience</text>`;
-  g += `<text class="anno" x="${x + s / 2}" y="${BASE}" text-anchor="middle">VP of Technology, Tracxn</text>`;
-  // The callout: a point on the print, a leader up and out, the note above it.
-  const px = x + s * 0.75, py = y + s * 0.25;
-  g += `<circle cx="${px}" cy="${py}" r="2" fill="${t.ink3}"/>` +
-       `<path d="M${px + 2} ${py - 2}L${r + 12} ${HEAD.rule + 18.5}H${R}" stroke="${t.ink3}" fill="none"/>` +
-       `<text class="anno" x="${R}" y="${HEAD.rule + 14}" text-anchor="end">56 × 56 halftone</text>`;
+function specimens(t, accent) {
+  const inks = INKS.map((i) => (t.dark ? i.dark : i.light));
+  // Each glyph is drawn in a 48 x 32 box centred on the origin, in the same
+  // conventions as fig. 1's slabs: line, not shading; at most one solid mark
+  // in the ink; the greyed parts in --rule-2 so the ink stays the subject.
+  const greek = (d) => `<path d="${d}" stroke="${t.rule2}" stroke-width="1.5"/>`;
+  const items = [
+    { name: 'microcharts', spec: `${fmt(starsOf('microcharts'))} stars · 2026`, live: true,
+      // A sentence with two charts set in it at word size. That is the library.
+      glyph: greek('M-22 -8H-11M14 -8H22M-22 2H-6M14 2H22M-22 12H4') +
+        `<path d="M-7 -5L-3.5 -11L0 -7L3.5 -12.5L7 -8.5L10.5 -11" stroke="${accent}" stroke-width="1.75"/>` +
+        [[-2, 4], [1.5, 7.5], [5, 5.5], [8.5, 10]].map(([x, h]) => `<rect x="${x}" y="${4 - h}" width="2.2" height="${h}" fill="${accent}" stroke="none"/>`).join('') },
+    { name: 'bttn.css', spec: `${fmt(starsOf('bttn.css'))} stars · 2016`,
+      // A button on its press depth, a pointer over it.
+      glyph: `<rect x="-19" y="-5" width="34" height="15" rx="3" stroke="${t.rule2}"/>` +
+        `<rect x="-21" y="-9" width="34" height="15" rx="3" fill="${t.raise}"/>` +
+        `<path d="M-13 -1.5H5" stroke="${accent}" stroke-width="2"/>` +
+        `<path d="M13 2L13 14L16.2 10.9L18.6 16L20.8 15L18.4 10L22.5 10Z" fill="${t.ink}" stroke="${t.paper}" stroke-width="0.75" stroke-linejoin="miter"/>` },
+    { name: 'react-spectrum', spec: `${fmt(starsOf('react-spectrum'))} stars · 2019`,
+      // Placeholder text, justified, every word a different ink.
+      glyph: (() => {
+        const rows = [[10, 6, 14, 8], [8, 12, 5, 13], [14, 7, 9, 8], [11, 9, 7]];
+        let out = '', k = 0;
+        rows.forEach((ws, r) => {
+          let x = -22;
+          for (const w of ws) {
+            out += `<rect x="${x}" y="${-12 + r * 7}" width="${w}" height="4.5" rx="2" fill="${inks[k++ % 6]}" stroke="none"/>`;
+            x += w + 2;
+          }
+        });
+        return out;
+      })() },
+    { name: 'react-dynamic-import', spec: `${fmt(starsOf('react-dynamic-import'))} stars · 2018`,
+      // The app, the chunk it asks for, and the component that arrives in it.
+      glyph: `<rect x="-23" y="-11" width="16" height="22"/>` + greek('M-19 -5H-11M-19 0H-11M-19 5H-14') +
+        `<path d="M-4 0H7M3.5 -3.5L7 0L3.5 3.5" stroke="${accent}" stroke-width="1.5"/>` +
+        `<rect x="10" y="-11" width="14" height="22" stroke-dasharray="2.5 2"/>` +
+        `<rect x="13" y="-3" width="8" height="6" rx="1" fill="${accent}" stroke="none"/>` },
+    { name: 'pure-cache', spec: `${fmt(starsOf('pure-cache'))} stars · 2017`,
+      // A store of entries, one fresh, and the clock that expires them.
+      glyph: `<rect x="-22" y="-13" width="32" height="26" rx="1"/>` +
+        `<rect x="-18" y="-9" width="20" height="4" rx="2" fill="${t.rule2}" stroke="none"/>` +
+        `<rect x="-18" y="-2" width="24" height="4" rx="2" fill="${accent}" stroke="none"/>` +
+        `<rect x="-18" y="5" width="15" height="4" rx="2" fill="${t.rule2}" stroke="none"/>` +
+        `<circle cx="15" cy="7" r="7.5" fill="${t.paper}"/><path d="M15 7V2.5M15 7H18.5" stroke="${accent}" stroke-width="1.5"/>` },
+    { name: 'sgb', spec: 'gold bonds · 2021',
+      // An ingot, and the yield curve it is ranked by.
+      glyph: `<path d="M-19 14H11L7 5H-15Z" fill="${t.paper}"/><path d="M-15 5L-10 -1H12L7 5Z" fill="${t.raise}"/><path d="M7 5L11 14L16 8L12 -1Z" fill="${t.sunk}"/>` +
+        `<path d="M-21 -6L-13 -10L-5 -7.5L4 -13L13 -15" stroke="${accent}" stroke-width="1.5"/><circle cx="13" cy="-15" r="1.8" fill="${accent}" stroke="none"/>` },
+  ];
+  // The tray fills the right half from the figure title to the foot baseline:
+  // three rows of 72 from 104 land the bottom rule at 320, on the line the
+  // ask sits on. Inside a tile: 7px, the glyph (48 x 32 at .95), 6px, the
+  // name, the spec, 5px. The footer line went into the title so the rows
+  // could have the room.
+  const gx = 500, gy = 104, cw = 130, rh = 72, cols = 2;
+  let g = `<text class="anno" x="${R}" y="${HEAD.rule + 14}" text-anchor="end">open source · ${REPOS.length} repos · ${fmt(TOTAL_STARS)} stars · ${NPM_PACKAGES} on npm</text>`;
+  const rows = items.length / cols;
+  let grid = `M${gx + 0.5} ${gy + 0.5}H${gx + cw * cols - 0.5}V${gy + rh * rows - 0.5}H${gx + 0.5}Z`;
+  for (let c = 1; c < cols; c++) grid += `M${gx + c * cw + 0.5} ${gy}V${gy + rh * rows}`;
+  for (let r = 1; r < rows; r++) grid += `M${gx} ${gy + r * rh + 0.5}H${gx + cw * cols}`;
+  g += `<path d="${grid}" stroke="${t.rule}" fill="none"/>`;
+  items.forEach((it, i) => {
+    const x = gx + (i % cols) * cw, y = gy + Math.floor(i / cols) * rh;
+    g += `<g transform="translate(${x + cw / 2} ${y + 23}) scale(.95)" fill="none" stroke="${t.ink2}" stroke-width="1.25" stroke-linejoin="round" stroke-linecap="round">${it.glyph}</g>` +
+      `<text class="s lbl" x="${x + cw / 2}" y="${y + 52}" text-anchor="middle" fill="${it.live ? accent : t.ink}">${it.name}</text>` +
+      `<text class="anno" x="${x + cw / 2}" y="${y + 64.5}" text-anchor="middle">${it.spec}</text>`;
+  });
   return g;
 }
 
@@ -211,6 +225,7 @@ function masthead(t) {
     `.ttl{font-size:10px;letter-spacing:.14em;fill:${t.ink2}}`,
     `.anno{font-size:9.5px;letter-spacing:.02em;fill:${t.ink3}}`,
     `.ask{font-size:10.5px;fill:${t.ink3}}`,
+    `.lbl{font-size:11px;font-weight:500}`,
   ].join('\n');
 
   // The drawing title, on the rule it interrupts, with the compass dead centre.
@@ -243,12 +258,10 @@ ${compass(cx, HEAD.rule + 0.5, t, accent)}
 <text class="s lede" x="${M}" y="290">${NOW[1]}</text>
 <text class="m ask" x="${M}" y="${BASE}">${esc(ASK)}</text>
 
-<rect x="${PT.x + 0.5}" y="${PT.y + 0.5}" width="${PT.s - 1}" height="${PT.s - 1}" fill="${t.raise}" stroke="${t.rule}"/>
-${halftone(t, accent)}
-${dimensions(t, accent)}`;
+${specimens(t, accent)}`;
 
   const title = `${NAME}. VP of Technology at Tracxn, Bengaluru.`;
-  const desc = `One sheet of an engineering drawing. The name ${NAME} with the same name in Kannada, a tray of six inks, the drawing title ${SHEET_TITLE}, the claim "${H1.join(' ')}", two short paragraphs of introduction, and a halftone portrait dimensioned ${CAREER_YEARS} years experience by VP of Technology, Tracxn.`;
+  const desc = `One sheet of an engineering drawing. The name ${NAME} with the same name in Kannada, a tray of six inks, the drawing title ${SHEET_TITLE}, the claim "${H1.join(' ')}", two short paragraphs of introduction, and a tray of six open-source projects drawn as parts: microcharts, bttn.css, react-spectrum, react-dynamic-import, pure-cache and sgb, each with its stars and year.`;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-labelledby="t d">
 <title id="t">${esc(title)}</title>
