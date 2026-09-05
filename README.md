@@ -6,7 +6,7 @@
 <a href="https://meetguns.com">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://github.com/ganapativs/ganapativs/raw/master/assets/masthead-dark.svg">
-    <img alt="Ganapati V S. VP of Technology at Tracxn, Bengaluru. I build the interfaces people work in. Six open-source projects: microcharts, bttn.css, react-spectrum, react-dynamic-import, pure-cache and sgb." src="https://github.com/ganapativs/ganapativs/raw/master/assets/masthead-light.svg">
+    <img alt="Ganapati V S. VP of Technology at Tracxn, Bengaluru. I build the interfaces people work in. Six open-source projects: microcharts, bttn.css, react-spectrum, react-dynamic-import, pure-cache and sgb." src="https://github.com/ganapativs/ganapativs/raw/master/assets/masthead-light.svg" width="100%">
   </picture>
 </a>
 
