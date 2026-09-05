@@ -1,12 +1,12 @@
 <!--
   github.com/ganapativs — profile README
-  The header image is generated: `npm run build` (no dependencies). See NOTES.md.
+  The header image is generated: `pnpm build` (no dependencies). See NOTES.md.
 -->
 
 <a href="https://meetguns.com">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://github.com/ganapativs/ganapativs/raw/master/assets/masthead-dark.svg">
-    <img alt="Ganapati V S — VP, Technology at Tracxn, Bengaluru. Engineer, then lead, then VP — one company since 2015." src="https://github.com/ganapativs/ganapativs/raw/master/assets/masthead-light.svg">
+    <img alt="Ganapati V S. VP of Technology at Tracxn, Bengaluru. I build the interfaces people work in." src="https://github.com/ganapativs/ganapativs/raw/master/assets/masthead-light.svg">
   </picture>
 </a>
 

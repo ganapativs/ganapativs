@@ -4,6 +4,11 @@
   "private": true,
   "type": "module",
   "description": "Generates the header image for github.com/ganapativs.",
-  "scripts": { "build": "node scripts/generate-assets.mjs" },
-  "engines": { "node": ">=18" }
+  "scripts": {
+    "build": "node scripts/generate-assets.mjs",
+    "prepare:src": "python3 scripts/prepare.py"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }

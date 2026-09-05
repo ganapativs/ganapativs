@@ -1,82 +1,76 @@
 # Notes
 
-One generated image, no dependencies.
-
-## Install
+One generated image, no runtime dependencies.
 
 ```
 README.md
 NOTES.md
 package.json
-.gitignore
-scripts/core.mjs               design tokens + SVG helper
-scripts/generate-assets.mjs    builds the header
-scripts/kannada_path.py        one-off: Kannada -> outlines
-assets/masthead-light.svg
-assets/masthead-dark.svg
-assets/_kannada-path.svgfrag
+scripts/generate-assets.mjs    builds the two header SVGs (node, zero deps)
+scripts/prepare.py             one-off: font subsets + portrait grid -> assets/src/*.json
+assets/masthead-light.svg      what the README shows on a light GitHub theme
+assets/masthead-dark.svg       same, dark
+assets/src/portrait.webp       the photograph, as meetguns.com ships it
+assets/src/anek-kannada-name.woff2   the site's eleven-character Kannada cut (+ OFL.txt)
+assets/src/_fonts.json         base64 woff2 subsets, written by prepare.py
+assets/src/_portrait.json      56x56 luminance grid, written by prepare.py
 ```
 
 ```bash
-npm run build     # writes both header SVGs. No npm install needed — zero deps.
+pnpm build          # writes both SVGs
+pnpm prepare:src    # only when a font, the photo or the character set changes
+                    # (wants python3 with fonttools, brotli, Pillow)
 ```
 
-`scripts/kannada_path.py` only needs re-running if the Kannada string changes; it
-wants `uharfbuzz`, `fonttools`, and Noto Sans Kannada.
+## What it is
 
-## What changed, and why
+One sheet of meetguns.com's drawing at 800 x 360: the frame and its
+registration ticks, the measuring edge, the G with its bar in dust blue, the
+name and the Kannada name, the six-ink tray, the drawing title on its rule with
+the compass, the claim, two paragraphs, and the portrait printed as a 56 x 56
+halftone and dimensioned like a part (height: 13 yrs experience, width: VP of
+Technology, Tracxn).
 
-**No rendered charts.** They were embedded as `<img>`, and microcharts aligns inline
-charts with its `.mc-inline` class and `--mc-inline-nudge` custom property. GitHub
-strips all CSS from markdown, so neither reaches the page — the charts could never
-sit on the text baseline, which is exactly how they looked. Not a fixable bug: an
-`<img>` in GitHub markdown can't be baseline-tuned. They're gone, along with the
-`@microcharts/*` dependencies, both chart generators, and `EXTRAS.md`.
+800 wide because the profile README card is about 798 CSS px, so it renders 1:1.
 
-**No ink swatch strip.** It was decoration with no job.
+## Sync with the site
 
-**No email or résumé link.** Both are in the profile sidebar already.
+Tokens, copy and constants are mirrored by hand from `ganapativs/portfolio-v2`.
+When the site changes one of these, change it here and rebuild:
 
-**Header is 800px wide.** Measured off the live screenshot: the profile README card
-is about 798 CSS px, so the earlier 1200px and 880px versions were being scaled to
-66% and 91%, which is why the small type looked soft. At 800 it renders 1:1.
+| Here (`generate-assets.mjs`) | There                                          |
+| ---------------------------- | ---------------------------------------------- |
+| `THEMES`, `INKS`             | `lib/ink.ts` (`SURFACE_HEX`, `INKS`)           |
+| `MARK`                       | `lib/mark.ts`                                  |
+| `CAREER_YEARS`               | `lib/resume.ts` (bumped each July)             |
+| `H1`, `LEDE`, `NOW`, `ASK`   | `app/(press)/page.tsx`, `BIO` in `lib/resume.ts` |
+| halftone thresholds          | `components/schematic/Portrait.tsx`            |
+| `assets/src/portrait.webp`   | `public/portrait/ganapativs.webp`              |
+| `assets/src/anek-kannada-name.woff2` | `fonts/anek-kannada-name-subset.woff2` |
 
-**The name is printed once.** The second offset plate was meant to read as letterpress
-misregistration, the way it does on meetguns.com. On a dark card at this size it just
-read as a drop shadow on doubled text. If you want it back, add a second `<text>` in
-`masthead()` behind the first with `fill="${t.accent}"`, `opacity:.34` and a
-`translate(2px,1.5px)`.
+## Decisions
 
-**Kannada now shares a baseline with the small caps.** ಗಣಪತಿ ವಿ ಎಸ್ sat 3px low
-before. Both now sit on `BASE = 138`, verified at 1px in a browser render. The
-Kannada is scaled to ~15px optical against the 8.5px caps, so it still reads as the
-name rather than as a tag.
+**Fonts are embedded as data URIs.** A webfont cannot be fetched from inside an
+`<img>`-loaded SVG, so the site's faces (Hanken Grotesk 400/700, IBM Plex Mono
+400) are cut to ASCII plus `· × é` with fontTools, about 7 kB each, and inlined.
+The Kannada name is the site's own Anek Kannada cut, embedded as-is; it carries
+a synthesised GDEF that the shaping needs, so do not re-subset it. This
+replaces the HarfBuzz-outlined Noto Sans Kannada paths the old header used.
 
-**Standfirst.** Was *"Engineering leader. At Tracxn since 2015, engineer to VP. Still
-shipping."* — LinkedIn phrasing, and set too small. Now *"Engineer, then lead, then VP
-— one company since 2015."* at 15.5px in Piazzolla, up from 13.5.
+**The halftone is the site's print, not a picture of it.** `prepare.py` takes
+the same sample `Portrait.tsx` does (square cover-crop biased 20% up, 56x56,
+luminance auto-levelled over the opaque cells) and `generate-assets.mjs` applies
+the same curves: ink = 1 - lum on paper, lum^1.2 on graphite, nothing under
+0.14, midtones 0.32..0.52 in the live ink. Dots are zero-length subpaths under a
+round cap grouped by colour and radius, ~15 kB for 1,400 dots. The shoulders
+falling away on dark is the site's behaviour too.
 
-## The header
+**No animation.** The old header drew its rules in and pulsed a status dot.
+The site's rule is that nothing moves unless the reader caused it, and nothing
+in a README image can be caused. A still render is the finished state.
 
-Palette and type come from meetguns.com's stylesheet (bundle
-`0756510ea7a1c7d5.css`), OKLCH converted to hex: `#e7eee4` paper, `#03180c` dark
-paper, `#001a0d` ink, `#1b6c46` bottle green, `#7dbf92` its dark twin. Type names
-Anek Latin, Piazzolla and Fragment Mono first and falls back exactly as your CSS
-does. If you change inks again, edit `THEMES` in `scripts/core.mjs` and rebuild.
+**No dashes in copy.** Not em, not en. Full stops and the middot, as on the site.
 
-ಗಣಪತಿ ವಿ ಎಸ್ is outlines, not text: webfonts can't load inside an `<img>`-embedded
-SVG, so it would be tofu for anyone without a Kannada font. Shaped with HarfBuzz
-against Noto Sans Kannada — seven glyph clusters, matras and virama correct.
-
-Light and dark are separate files behind `<picture>`, so they follow your GitHub
-theme rather than the visitor's OS theme. Motion is progressive enhancement: the
-base styles are the finished state and the rules only draw in under
-`prefers-reduced-motion: no-preference`, so a still render is always correct. The
-one loop is the status dot.
-
-## If the header arrives static
-
-GitHub proxies images through camo. CSS animation inside an `<img>`-loaded SVG
-normally survives, but if the rules don't draw in, swap the absolute
-`https://github.com/ganapativs/ganapativs/raw/master/assets/…` URLs for relative
-`assets/…` ones. It stays legible either way.
+**Light and dark are separate files** behind `<picture>`, so they follow the
+GitHub theme rather than the OS theme. Each paints its own paper full-bleed, so
+the sheet stays legible if the two disagree.
