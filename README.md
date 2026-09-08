@@ -18,15 +18,17 @@ Most of my time goes to the team these days. Hiring and interviews, design revie
 
 ### What I'm working on
 
-**[microcharts](https://microcharts.dev)** — a React library of very small charts. Sparklines, bars, deltas, bullets, sized to sit inline with text or inside a table cell. 106 types so far, no runtime dependencies, and each one writes its own description for screen readers. There's no pie chart or gauge in it, deliberately.
+**[microcharts](https://microcharts.dev)** - a React library of very small charts. Sparklines, bars, deltas, bullets, sized to sit inline with text or inside a table cell. 106 types so far, no runtime dependencies, and each one writes its own description for screen readers. There's no pie chart or gauge in it, deliberately.
 
-**AI work at Tracxn** — a customer-facing assistant, the API docs portal, and MCP servers, etc.
+**AI work at Tracxn** - a customer-facing assistant, the API docs portal, and MCP servers, etc.
+
+**Fun exploration - [Scale of time](https://scale-of-time.vercel.app/)** - How small are we in the scale of time?
 
 ### Older things
 
-**[bttn.css](https://github.com/ganapativs/bttn.css)** — a CSS button library from 2016. It got picked up on Product Hunt and people still use it, which I didn't expect at the time.
-**[react-spectrum](https://github.com/ganapativs/react-spectrum)** — makes colourful placeholder text out of any string.
-**[sgb](https://sgb.vercel.app)** — tracks India's Sovereign Gold Bonds, sorted by what you'd actually earn buying at today's price instead of the coupon on paper. It's a cron job and a JSON file. Running since 2021.
+**[bttn.css](https://github.com/ganapativs/bttn.css)** - a CSS button library from 2016. It got picked up on Product Hunt and people still use it, which I didn't expect at the time.
+**[react-spectrum](https://github.com/ganapativs/react-spectrum)** - makes colourful placeholder text out of any string.
+**[sgb](https://sgb.vercel.app)** - tracks India's Sovereign Gold Bonds, sorted by what you'd actually earn buying at today's price instead of the coupon on paper. It's a cron job and a JSON file. Running since 2021.
 
 Most of what I've built is internal and isn't on here, mainly a React component library the team has been using for about ten years.
 
